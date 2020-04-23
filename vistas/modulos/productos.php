@@ -10,7 +10,7 @@
 
     <ol class="breadcrumb">
       
-      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
       <li class="active">Administrar productos</li>
     
@@ -18,34 +18,44 @@
 
   </section>
 
-  <!-- Main content -->
   <section class="content">
 
-    <!-- Default box -->
     <div class="box">
+
       <div class="box-header with-border">
-        <h3 class="box-title">Urban Dolls</h3>
+  
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProducto">
+          
+          Agregar producto
 
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                  title="Collapse">
-            <i class="fa fa-minus"></i></button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fa fa-times"></i></button>
-        </div>
+        </button>
+
       </div>
+
       <div class="box-body">
-        En este espacio crearemos el listado de prendas con fotos, precios y demás detalles
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        Equipo 2  ADSI  2020  SENA
-      </div>
-      <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
+        
+       <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
+         
+        <thead>
+         
+          <tr>
+           
+           <th style="width:10px">#</th>
+           <th>Imagen</th>
+           <th>Código</th>
+           <th>Descripción</th>
+           <th>Categoría</th>
+           <th>Stock</th>
+           <th>Precio de compra</th>
+           <th>Precio de venta</th>
+           <th>Agregado</th>
+           <th>Acciones</th>
+           
+         </tr> 
 
-  </section>
-  <!-- /.content -->
+        </thead>
+
 </div>
-<!-- /.content-wrapper -->
+
+     
+
