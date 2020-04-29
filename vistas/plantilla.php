@@ -83,6 +83,14 @@ session_start();
    <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 
+
+
+
+    
+  <!-- InputMask -->
+    <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 </head>
 
 <!--=====================================
@@ -159,6 +167,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/categorias.js"></script>
+<script src="vistas/js/clientes.js"></script>
 <script src="vistas/js/productos.js"></script>
 </body>
 </html>
