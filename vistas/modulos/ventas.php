@@ -4,49 +4,99 @@
     
     <h1>
       
-      Administrar ventas
+      administrar ventas
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar ventas</li>
+      <li class="active">administrar ventas</li>
     
     </ol>
 
   </section>
 
-  <!-- Main content -->
   <section class="content">
 
-    <!-- Default box -->
     <div class="box">
+
       <div class="box-header with-border">
-        <h3 class="box-title">Urban Dolls</h3>
+  
+        <button class="btn btn-primary"> 
 
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                  title="Collapse">
-            <i class="fa fa-minus"></i></button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fa fa-times"></i></button>
-        </div>
+        </button>
+
       </div>
+
       <div class="box-body">
-        Crearemos un formulario tipo CRUD que permita editar las ventas registradas
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-      Equipo 2  ADSI  2020  SENA
+        
+       <table class="table table-bordered table-striped dt-responsive tablas">
+         
+        <thead>
+         
+         <tr>
+           
+           <th style="width:10px">#</th>
+           <th>Codigo factura</th>
+           <th>CLiente</th>
+           <th>Vendedor</th>
+           <th>Forma de pago</th>
+           <th>Neto</th>
+           <th>Total</th> 
+           <th>Fecha </th>
+           <th>Acciones</th>
+
+         </tr> 
+
+        </thead>
+
+        <tbody>
+          
+          <tr>
+
+            <td>1</td>
+
+            <td>1000123</td>
+
+            <td>juan villegas</td>
+
+            <td>juan gomez</td>
+
+            <td>TC-212356</td>
+
+            <td>1,000.00</td>
+
+            <td>1,190.00</td>
+
+            <td>2020-04-30 12:05:32</td>
+
+
+            
+            <td>
+
+              <div class="btn-group">
+                  
+                <button class="btn btn-success"><i class="fa fa-print"></i></button>
+
+                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+
+              </div>  
+
+            </td>
+
+          </tr>
+
+          
+        </tbody>
+
+       </table>
 
       </div>
-      <!-- /.box-footer-->
+
     </div>
-    <!-- /.box -->
 
   </section>
-  <!-- /.content -->
+
 </div>
-<!-- /.content-wrapper -->
