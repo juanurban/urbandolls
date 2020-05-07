@@ -23,11 +23,16 @@
     <div class="box">
 
       <div class="box-header with-border">
+
+      <a href="crear-venta">
   
         <button class="btn btn-primary"> 
 
+        Agragar venta 
+        
         </button>
-
+        </a>
+        
       </div>
 
       <div class="box-body">
