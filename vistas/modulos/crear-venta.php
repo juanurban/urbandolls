@@ -47,7 +47,9 @@
    
    <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-   <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value= "Usuario Administrador" readonly>
+   <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value= "<?php echo $_SESSION["nombre"]; ?>" readonly>
+   
+   <input type="hidden" name="idVendedor" value="<?php echo $_SESSION["id"]; ?>">
    
    </div>
    
@@ -59,16 +61,46 @@
 
     <div class="form-group">
                   
-    <div class="input-group">
+                  <div class="input-group">
                     
-    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-    <input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="10002343" readonly>
+                    <?php
+
+                    $item = null;
+                    $valor = null;
+
+                    $ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
+
+                    if(!$ventas){
+
+                      echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="10001" readonly>';
+                  
+
+                    }else{
+
+                      foreach ($ventas as $key => $value) {
+                        
+                        
+                      
+                      }
+
+                      $codigo = $value["codigo"] + 1;
 
 
-    </div>
 
-    </div>
+                      echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="'.$codigo.'" readonly>';
+                  
+
+                    }
+
+                    ?>
+                    
+                    
+                  </div>
+                
+                </div>
+
 
    <!--=====================================
     ENTRADA DEL CLIENTE
@@ -83,6 +115,20 @@
            <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required>
           
            <option value="">Seleccionar cliente</option>
+
+           <?php
+
+           $item = null;
+           $valor = null;
+
+           $categorias = ControladorClientes::ctrMostrarClientes($item, $valor);
+           
+           foreach ($categorias as $key => $value) {
+
+            echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+
+           }
+           ?>
 
            </select>
 
@@ -276,7 +322,7 @@
 
           <div class="box-body">
             
-            <table class="table table-bordered table-striped dt-responsive tablas">
+            <table class="table table-bordered table-striped dt-responsive tablaVentas">
               
                <thead>
 
@@ -291,22 +337,7 @@
 
               </thead>
 
-              <tbody>
-
-                <tr>
-                  <td>1.</td>                 
-                  <td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                  <td>00123</td>
-                  <td>Lorem ipsum dolor sit amet</td>       
-                  <td>20</td>                 
-                  <td>                 
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary">Agregar</button> 
-                    </div>
-                  </td>
-                </tr>
-
-              </tbody>
+              
 
             </table>
 
