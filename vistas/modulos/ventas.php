@@ -4,7 +4,7 @@
     
     <h1>
       
-      administrar ventas
+      Administrar ventas
     
     </h1>
 
@@ -12,7 +12,7 @@
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">administrar ventas</li>
+      <li class="active">Administrar ventas</li>
     
     </ol>
 
@@ -23,34 +23,35 @@
     <div class="box">
 
       <div class="box-header with-border">
-
-      <a href="crear-venta">
   
-        <button class="btn btn-primary"> 
+        <a href="crear-venta">
 
-        Agragar venta 
-        
-        </button>
+          <button class="btn btn-primary">
+            
+            Agregar venta
+
+          </button>
+
         </a>
-        
+
       </div>
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablas">
+       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
          
         <thead>
          
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Codigo factura</th>
-           <th>CLiente</th>
+           <th>Código factura</th>
+           <th>Cliente</th>
            <th>Vendedor</th>
            <th>Forma de pago</th>
            <th>Neto</th>
            <th>Total</th> 
-           <th>Fecha </th>
+           <th>Fecha</th>
            <th>Acciones</th>
 
          </tr> 
@@ -58,45 +59,75 @@
         </thead>
 
         <tbody>
-          
-          <tr>
 
-            <td>1</td>
+        <?php
 
-            <td>1000123</td>
+          $item = null;
+          $valor = null;
 
-            <td>juan villegas</td>
+          $respuesta = ControladorVentas::ctrMostrarVentas($item, $valor);
 
-            <td>juan gomez</td>
+          foreach ($respuesta as $key => $value) {
+           
 
-            <td>TC-212356</td>
+           echo '<tr>
 
-            <td>1,000.00</td>
+                  <td>'.($key+1).'</td>
 
-            <td>1,190.00</td>
+                  <td>'.$value["codigo"].'</td>';
 
-            <td>2020-04-30 12:05:32</td>
+                  $itemCliente = "id";
+                  $valorCliente = $value["id_cliente"];
 
+                  $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
 
-            
-            <td>
+                  echo '<td>'.$respuestaCliente["nombre"].'</td>';
 
-              <div class="btn-group">
-                  
-                <button class="btn btn-success"><i class="fa fa-print"></i></button>
+                  $itemUsuario = "id";
+                  $valorUsuario = $value["id_vendedor"];
 
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                  $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
 
-              </div>  
+                  echo '<td>'.$respuestaUsuario["nombre"].'</td>
 
-            </td>
+                  <td>'.$value["metodo_pago"].'</td>
 
-          </tr>
+                  <td>$ '.number_format($value["neto"],2).'</td>
 
-          
+                  <td>$ '.number_format($value["total"],2).'</td>
+
+                  <td>'.$value["fecha"].'</td>
+
+                  <td>
+
+                    <div class="btn-group">
+                        
+                      <button class="btn btn-info"><i class="fa fa-print"></i></button>
+
+                      <button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+
+                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>
+
+                    </div>  
+
+                  </td>
+
+                </tr>';
+            }
+
+        ?>
+               
         </tbody>
 
        </table>
+
+       <?php
+
+      $eliminarVenta = new ControladorVentas();
+      $eliminarVenta -> ctrEliminarVenta();
+
+      ?>
+       
 
       </div>
 
@@ -105,3 +136,7 @@
   </section>
 
 </div>
+
+
+
+

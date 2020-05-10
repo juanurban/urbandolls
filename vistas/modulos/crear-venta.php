@@ -19,47 +19,48 @@
   </section>
 
   <section class="content">
+
+    <div class="row">
+
+      <!--=====================================
+      EL FORMULARIO
+      ======================================-->
+      
+      <div class="col-lg-5 col-xs-12">
+        
+        <div class="box box-success">
+          
+          <div class="box-header with-border"></div>
+
+          <form role="form" method="post" class="formularioVenta">
+
+            <div class="box-body">
   
-  <div class="row">
- 
-  <!-- EL FORMULARIO -->
-  
-  
-   <div class="col-lg-5 col-xs-12">
-   
-   <div class="box box-success">
-   
-   <div class="box-header with-border"></div>
-   
-   <form role="form" metohd="post">
+              <div class="box">
 
-   <div class="box-body">
-   
-   <div class="box">
+                <!--=====================================
+                ENTRADA DEL VENDEDOR
+                ======================================-->
+            
+                <div class="form-group">
+                
+                  <div class="input-group">
+                    
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-   <!--=====================================
-     ENTRADA DEL VENDEDOR
-    ======================================-->
-   
-   <div class="form-group">
-   
-   <div class="input-group">
-   
-   <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" id="nuevoVendedor" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
 
-   <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value= "<?php echo $_SESSION["nombre"]; ?>" readonly>
-   
-   <input type="hidden" name="idVendedor" value="<?php echo $_SESSION["id"]; ?>">
-   
-   </div>
-   
-   </div>
-   
-    <!--=====================================
-     ENTRADA DEL CODIGO
-    ======================================-->
+                    <input type="hidden" name="idVendedor" value="<?php echo $_SESSION["id"]; ?>">
 
-    <div class="form-group">
+                  </div>
+
+                </div> 
+
+                <!--=====================================
+                ENTRADA DEL CÓDIGO
+                ======================================--> 
+
+                <div class="form-group">
                   
                   <div class="input-group">
                     
@@ -101,216 +102,182 @@
                 
                 </div>
 
+                <!--=====================================
+                ENTRADA DEL CLIENTE
+                ======================================--> 
 
-   <!--=====================================
-    ENTRADA DEL CLIENTE
-   ======================================--> 
-
-   <div class="form-group">
+                <div class="form-group">
                   
-      <div class="input-group">
+                  <div class="input-group">
                     
-           <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
                     
-           <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required>
-          
-           <option value="">Seleccionar cliente</option>
+                    <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required>
 
-           <?php
+                    <option value="">Seleccionar cliente</option>
 
-           $item = null;
-           $valor = null;
+                    <?php
 
-           $categorias = ControladorClientes::ctrMostrarClientes($item, $valor);
-           
-           foreach ($categorias as $key => $value) {
+                      $item = null;
+                      $valor = null;
 
-            echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                      $categorias = ControladorClientes::ctrMostrarClientes($item, $valor);
 
-           }
-           ?>
+                       foreach ($categorias as $key => $value) {
 
-           </select>
+                         echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
 
-           <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarCliente" data-dismiss="modal">Agregar cliente</button></span>
-          
-           </div>
-      </div>    
+                       }
 
-   <!--=====================================
-   ENTRADA PARA AGREGAR PRODUCTO
-   ======================================--> 
-  
+                    ?>
 
-   <div class="form-group row nuevoProducto">
-
-    <!-- Descripcion del producto -->
-
-    <div class="col-xs-6" style="padding-rignt:0px">
-   
-      <div class="input-group">
-
-       <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
-   
-        <input type="text" class="form-control" id="agregarProducto" name="agregarProducto" placeholder="Descripción del producto" required>
-   
-      </div>
-   
-    </div>
-
-    <!-- Cantidad del producto -->
-
-    <div class="col-xs-3">
-  
-     <input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" placeholder="0" required>
-  
-    </div>
-
-    <!-- Precio del Producto -->
-
-    <div class="col-xs-3" style="padding-left:0px">
-
-     <div class="input-group">
-
-     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-
-      <input type="number" min="1" class="form-control" id="nuevoPrecioProducto" name="nuevoPrecioProducto" placeholder="000000" readonly required>
-  
-       
-   
-    </div>
-    
-    </div>
-
-   </div>  
-  
-   <!-- BOTON PARA AGREGAR PRODUCTO -->
-
-   <button type="button" class="btn btn-dafault hidden-lg">Agregar producto</button>
-   
-   <hr>
-
-   <div class="row">
-
-     <!--=====================================
-  ENTRADA IMPUESTOS Y TOTAL
-  ======================================-->
-   
-   <div class="col-xs-8 pull-right">
-   
-   <table class="table">
-
-    <thead>
-     <tr>
-      <th>Impuesto</th>
-      <th>Total</th>
-
-     </tr>
-
-    </thead>
-
-    <tbody>
-
-    <tr>
-
-     <td style="width: 50%">
-     
-     <div class="input-group">
-     
-     <input type="number" class="form-control" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
-
-     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-
-     
-     </div>
-     
-     </td>
-
-     <td style="width: 50%">
-
-      <div class="input-group">
-
-       <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-     
-       <input type="number" min="1" class="form-control" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="00000" readonly required>
-      
-
-      </div>
-
-      </td>
-
-     </tr>
-
-    </tbody>
-
-   </table>
-
-   
-   </div>
-   
-   </div>
-
-   <hr>
-
-  <!--=====================================
-  ENTRADA MÉTODO DE PAGO
-  ======================================-->
-
-  <div class="form-group row">
+                    </select>
+                    
+                    <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarCliente" data-dismiss="modal">Agregar cliente</button></span>
                   
-    <div class="col-xs-6" style="padding-right:0px">
+                  </div>
+                
+                </div>
 
-     <div class="input-group">
-   
-      <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
-       <option value="">Seleccione método de pago</option>
-       <option value="Efectivo">Efectivo</option>
-       <option value="TC">Tarjeta Crédito</option>
-       <option value="TD">Tarjeta Débito</option>                  
-      </select>   
+                <!--=====================================
+                ENTRADA PARA AGREGAR PRODUCTO
+                ======================================--> 
 
-     </div>
+                <div class="form-group row nuevoProducto">
 
-   
-    </div>
+                
 
-    <div class="col-xs-6" style="padding-left:0px">
-                        
-     <div class="input-group">
-                         
-      <input type="text" class="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Código transacción"  required>
-                           
-      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                </div>
+
+                <input type="hidden" id="listaProductos" name="listaProductos">
+
+                <!--=====================================
+                BOTÓN PARA AGREGAR PRODUCTO
+                ======================================-->
+
+                <button type="button" class="btn btn-default hidden-lg btnAgregarProducto">Agregar producto</button>
+
+                <hr>
+
+                <div class="row">
+
+                  <!--=====================================
+                  ENTRADA IMPUESTOS Y TOTAL
+                  ======================================-->
+                  
+                  <div class="col-xs-8 pull-right">
+                    
+                    <table class="table">
+
+                      <thead>
+
+                        <tr>
+                          <th>Impuesto</th>
+                          <th>Total</th>      
+                        </tr>
+
+                      </thead>
+
+                      <tbody>
                       
-    </div>
+                        <tr>
+                          
+                          <td style="width: 50%">
+                            
+                            <div class="input-group">
+                           
+                              <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
 
-    </div>    
+                               <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required>
 
-   </div>
+                               <input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto" required>
 
-   <br>
+                              <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                        
+                            </div>
 
-   </div>  
-   
-   
+                          </td>
 
-  </div>  
-  
-  <div class="box-footer">
-  
-  <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+                           <td style="width: 50%">
+                            
+                            <div class="input-group">
+                           
+                              <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
+                              <input type="text" class="form-control input-lg" id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
 
-  </div>
+                              <input type="hidden" name="totalVenta" id="totalVenta">
+                              
+                        
+                            </div>
 
-  </form>
+                          </td>
 
-  </div>  
+                        </tr>
 
-  </div>  
-  
-   
-  <!--=====================================
+                      </tbody>
+
+                    </table>
+
+                  </div>
+
+                </div>
+
+                <hr>
+
+                <!--=====================================
+                ENTRADA MÉTODO DE PAGO
+                ======================================-->
+
+                <div class="form-group row">
+                  
+                  <div class="col-xs-6" style="padding-right:0px">
+                    
+                     <div class="input-group">
+                  
+                      <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
+                        <option value="">Seleccione método de pago</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="TC">Tarjeta Crédito</option>
+                        <option value="TD">Tarjeta Débito</option>                  
+                      </select>    
+
+                    </div>
+
+                  </div>
+                  
+                  <div class="cajasMetodoPago"></div>
+                  
+                  <input type="hidden" id="listaMetodoPago" name="listaMetodoPago">
+
+                </div>
+
+                <br>
+      
+              </div>
+
+          </div>
+
+          <div class="box-footer">
+
+            <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+
+          </div>
+
+        </form>
+
+        <?php
+
+          $guardarVenta = new ControladorVentas();
+          $guardarVenta -> ctrCrearVenta();
+          
+        ?>
+
+        </div>
+            
+      </div>
+
+      <!--=====================================
       LA TABLA DE PRODUCTOS
       ======================================-->
 
@@ -337,8 +304,6 @@
 
               </thead>
 
-              
-
             </table>
 
           </div>
@@ -354,7 +319,7 @@
 
 </div>
 
-  <!--=====================================
+<!--=====================================
 MODAL AGREGAR CLIENTE
 ======================================-->
 
@@ -487,7 +452,7 @@ MODAL AGREGAR CLIENTE
         </div>
 
       </form>
-      
+
       <?php
 
         $crearCliente = new ControladorClientes();

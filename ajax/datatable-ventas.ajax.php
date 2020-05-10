@@ -17,6 +17,13 @@ class TablaProductosVentas{
 
   		$productos = ControladorProductos::ctrMostrarProductos($item, $valor);	
 		
+  		if(count($productos) == 0){
+
+  			echo '{"data": []}';
+
+		  	return;
+  		}
+		
   		$datosJson = '{
 		  "data": [';
 
@@ -27,8 +34,6 @@ class TablaProductosVentas{
   			=============================================*/ 
 
 		  	$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
-
-		  	
 
 		  	/*=============================================
  	 		STOCK
@@ -52,7 +57,7 @@ class TablaProductosVentas{
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
 
-		  	$botones =  "<div class='btn-group'><button class='btn btn-primary agregarProducto recuperarBoton' idProducto='".$productos[$i]["id"]."' >Agregar</button></div>";
+		  	$botones =  "<div class='btn-group'><button class='btn btn-primary agregarProducto recuperarBoton' idProducto='".$productos[$i]["id"]."'>Agregar</button></div>"; 
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
@@ -84,3 +89,4 @@ ACTIVAR TABLA DE PRODUCTOS
 =============================================*/ 
 $activarProductosVentas = new TablaProductosVentas();
 $activarProductosVentas -> mostrarTablaProductosVentas();
+
