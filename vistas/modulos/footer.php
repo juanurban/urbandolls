@@ -1,6 +1,8 @@
 <footer class="main-footer">
 	
-	<strong>Equipo 2  ADSI  2020  SENA | <a>Juan Camargo Sofia Pérez Jorge Cuesta </a></strong>
+	<strong>Copyright &copy; 2017 <a href="https://www.tutorialesatualcance.com" target="_blank">Tutoriales a tu Alcance</a>.</strong>
+
+	Todos los derechos reservados.
 
 
 </footer>

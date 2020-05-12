@@ -10,11 +10,11 @@ class ControladorClientes{
 
 		if(isset($_POST["nuevoCliente"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúüÁÉÍÓÚ ]+$/', $_POST["nuevoCliente"]) &&
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCliente"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoId"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["nuevoEmail"]) && 
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9ñÑáéíóúüÁÉÍÓÚ ]+$/', $_POST["nuevaDireccion"])){
+			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
 
 			   	$tabla = "clientes";
 
@@ -101,7 +101,7 @@ class ControladorClientes{
 			   preg_match('/^[0-9]+$/', $_POST["editarDocumentoId"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editarEmail"]) && 
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["editarTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9ñÑáéíóúüÁÉÍÓÚ ]+$/', $_POST["editarDireccion"])){
+			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarDireccion"])){
 
 			   	$tabla = "clientes";
 
@@ -184,7 +184,8 @@ class ControladorClientes{
 					  type: "success",
 					  title: "El cliente ha sido borrado correctamente",
 					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
 					  }).then(function(result){
 								if (result.value) {
 
@@ -202,3 +203,4 @@ class ControladorClientes{
 	}
 
 }
+

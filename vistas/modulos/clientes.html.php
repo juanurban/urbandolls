@@ -62,23 +62,23 @@
 
             <td>1</td>
 
-            <td>Juana Martinez</td>
+            <td>Juan Villegas</td>
 
-            <td>1094669003</td>
+            <td>8161123</td>
 
-            <td>juana@gmail.com</td>
+            <td>juan@hotmail.com</td>
 
-            <td>302 908 9009</td>
+            <td>555 57 67</td>
 
-            <td>Av. 104 # 35 - 90</td>
+            <td>calle 27 # 40 - 36</td>
 
-            <td>1985-12-23</td>
+            <td>1982-15-11</td>
 
-            <td>2020-04-22 12:05:32</td>
+            <td>2017-12-11 12:05:32</td>
 
-            <td>15</td>
+            <td>35</td>
 
-            <td>2019-12-06 12:05:32</td>
+            <td>2017-12-11 12:05:32</td>
 
             <td>
 
@@ -240,7 +240,6 @@ MODAL AGREGAR CLIENTE
         </div>
 
       </form>
-      
 
     </div>
 
