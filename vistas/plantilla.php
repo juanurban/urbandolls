@@ -47,8 +47,11 @@ session_start();
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="vistas/plugins/iCheck/all.css">
 
-  <!-- Daterange picker -->
+     <!-- Daterange picker -->
   <link rel="stylesheet" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
 
   <!--=====================================
   PLUGINS DE JAVASCRIPT
@@ -88,7 +91,7 @@ session_start();
    <!-- jQuery Number -->
   <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
 
-<!-- daterangepicker http://www.daterangepicker.com/-->
+  <!-- daterangepicker http://www.daterangepicker.com/-->
   <script src="vistas/bower_components/moment/min/moment.min.js"></script>
   <script src="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
@@ -98,11 +101,7 @@ session_start();
 
   <!-- ChartJS http://www.chartjs.org/-->
   <script src="vistas/bower_components/chart.js/Chart.js"></script>
-
-
-
-
-    
+  
   
 </head>
 
@@ -186,6 +185,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/productos.js"></script>
 <script src="vistas/js/ventas.js"></script>
 <script src="vistas/js/almacenes.js"></script>
+<script src="vistas/js/reportes.js"></script>
 
 </body>
 </html>

@@ -152,6 +152,7 @@ class ModeloVentas{
 			return $stmt -> fetchAll();
 
 		}else{
+			
 
 			$fechaActual = new DateTime();
 			$fechaActual ->add(new DateInterval("P1D"));
@@ -181,7 +182,7 @@ class ModeloVentas{
 	}
 
 	/*=============================================
-	SUMAR EL TOTAL DE VENTAS
+	SUMAR EL TOTAL DE VENTAS 
 	=============================================*/
 
 	static public function mdlSumaTotalVentas($tabla){	

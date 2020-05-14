@@ -34,7 +34,7 @@ class ControladorUsuarios{
 						$_SESSION["perfil"] = $respuesta["perfil"];
 
 						/*=============================================
-						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
+						REGISTRAR F ECHA PARA SABER EL ÚLTIMO LOGIN
 						=============================================*/
 
 						date_default_timezone_set('America/Bogota');
@@ -351,7 +351,7 @@ class ControladorUsuarios{
 									  title: "¡La contraseña no puede ir vacía o llevar caracteres especiales!",
 									  showConfirmButton: true,
 									  confirmButtonText: "Cerrar"
-									  }).then(function(result) {
+									  }).then(function(result){
 										if (result.value) {
 
 										window.location = "usuarios";
@@ -360,8 +360,6 @@ class ControladorUsuarios{
 									})
 
 						  	</script>';
-
-						  	return;
 
 					}
 
@@ -388,7 +386,7 @@ class ControladorUsuarios{
 						  title: "El usuario ha sido editado correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
-						  }).then(function(result) {
+						  }).then(function(result){
 									if (result.value) {
 
 									window.location = "usuarios";
@@ -410,7 +408,7 @@ class ControladorUsuarios{
 						  title: "¡El nombre no puede ir vacío o llevar caracteres especiales!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
-						  }).then(function(result) {
+						  }).then(function(result){
 							if (result.value) {
 
 							window.location = "usuarios";
@@ -454,9 +452,8 @@ class ControladorUsuarios{
 					  type: "success",
 					  title: "El usuario ha sido borrado correctamente",
 					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar",
-					  closeOnConfirm: false
-					  }).then(function(result) {
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
 								if (result.value) {
 
 								window.location = "usuarios";

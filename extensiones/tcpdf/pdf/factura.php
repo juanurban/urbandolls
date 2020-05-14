@@ -93,7 +93,7 @@ $bloque1 = <<<EOF
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$valorVenta</td>
+			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTÙRA N.<br>$valorVenta</td>
 
 		</tr>
 
@@ -154,7 +154,6 @@ EOF;
 $pdf->writeHTML($bloque2, false, false, false, false, '');
 
 // ---------------------------------------------------------
-
 $bloque3 = <<<EOF
 
 	<table style="font-size:10px; padding:5px 10px;">
@@ -185,6 +184,7 @@ $orden = null;
 $respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 
 $valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
+
 
 $precioTotal = number_format($item["total"], 2);
 
@@ -290,9 +290,10 @@ $pdf->writeHTML($bloque5, false, false, false, false, '');
 
 
 // ---------------------------------------------------------
+
 //SALIDA DEL ARCHIVO 
 
-$pdf->Output('factura.pdf', 'D');
+$pdf->Output('factura.pdf');
 
 }
 
