@@ -13,6 +13,7 @@ if($_SESSION["perfil"] == "Especial"){
 }
 
 ?>
+
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -141,16 +142,16 @@ if($_SESSION["perfil"] == "Especial"){
 
                       </button>';
 
-                      if($_SESSION["perfil"] == "Administrador"){
 
-                      echo '<button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                    if($_SESSION["perfil"] == "Administrador"){
 
-                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-
+                        echo '<button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+  
+                        <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+  
                     }
-
-                    echo '</div>  
-
+  
+                    echo '</div> 
                   </td>
 
                 </tr>';
