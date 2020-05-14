@@ -50,7 +50,7 @@ if($_SESSION["perfil"] == "Especial"){
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablas">
+       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
          
         <thead>
          
@@ -65,6 +65,7 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Fecha nacimiento</th> 
            <th>Total compras</th>
            <th>Última compra</th>
+           <th>Ingreso al sistema</th>
            <th>Acciones</th>
 
          </tr> 
@@ -79,7 +80,7 @@ if($_SESSION["perfil"] == "Especial"){
           $valor = null;
 
           $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
- 
+
           foreach ($clientes as $key => $value) {
             
 
@@ -103,6 +104,8 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <td>'.$value["ultima_compra"].'</td>
 
+                    <td>'.$value["fecha"].'</td>
+
                     <td>
 
                       <div class="btn-group">
@@ -124,7 +127,7 @@ if($_SESSION["perfil"] == "Especial"){
             }
 
         ?>
-          
+   
         </tbody>
 
        </table>
@@ -270,7 +273,7 @@ MODAL AGREGAR CLIENTE
         </div>
 
       </form>
-      
+
       <?php
 
         $crearCliente = new ControladorClientes();
@@ -424,6 +427,8 @@ MODAL EDITAR CLIENTE
         $editarCliente -> ctrEditarCliente();
 
       ?>
+
+    
 
     </div>
 

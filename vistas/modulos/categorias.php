@@ -93,6 +93,7 @@ if($_SESSION["perfil"] == "Vendedor"){
 
                         }
 
+
                       echo '</div>   
 
                     </td>

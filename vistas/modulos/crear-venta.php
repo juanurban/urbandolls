@@ -261,9 +261,9 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>
 
                   </div>
-                  
+
                   <div class="cajasMetodoPago"></div>
-                  
+
                   <input type="hidden" id="listaMetodoPago" name="listaMetodoPago">
 
                 </div>

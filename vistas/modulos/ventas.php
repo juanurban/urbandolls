@@ -50,6 +50,16 @@ if($_SESSION["perfil"] == "Especial"){
 
         </a>
 
+         <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+           
+            <span>
+              <i class="fa fa-calendar"></i> Rango de fecha
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+         </button>
+
       </div>
 
       <div class="box-body">
@@ -78,14 +88,22 @@ if($_SESSION["perfil"] == "Especial"){
 
         <?php
 
-          $item = null;
-          $valor = null;
+          if(isset($_GET["fechaInicial"])){
 
-          $respuesta = ControladorVentas::ctrMostrarVentas($item, $valor);
+            $fechaInicial = $_GET["fechaInicial"];
+            $fechaFinal = $_GET["fechaFinal"];
+
+          }else{
+
+            $fechaInicial = null;
+            $fechaFinal = null;
+
+          }
+
+          $respuesta = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
 
           foreach ($respuesta as $key => $value) {
            
-
            echo '<tr>
 
                   <td>'.($key+1).'</td>
@@ -118,7 +136,12 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <div class="btn-group">
                         
-                      <button class="btn btn-info"><i class="fa fa-print"></i></button>';
+                      <button class="btn btn-info btnImprimirFactura" codigoVenta="'.$value["codigo"].'">
+
+                        <i class="fa fa-print"></i>
+
+                      </button>';
+
 
                     if($_SESSION["perfil"] == "Administrador"){
 
@@ -129,7 +152,6 @@ if($_SESSION["perfil"] == "Especial"){
                     }
   
                     echo '</div> 
-
                   </td>
 
                 </tr>';
