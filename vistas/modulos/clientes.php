@@ -118,7 +118,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                       }
 
-                      echo '</div> 
+                      echo '</div>  
 
                     </td>
 

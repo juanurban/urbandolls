@@ -138,21 +138,6 @@
 
 		}
 
-		if($_SESSION["perfil"] == "Administrador"){
-
-			echo '<li>
-
-				<a href="almacenes">
-
-					<i class="fa fa-building"></i>
-					<span>Almacenes</span>
-
-				</a>
-
-			</li>';
-
-		}
-
 		?>
 
 		</ul>

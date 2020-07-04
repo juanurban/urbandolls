@@ -1,8 +1,6 @@
 <footer class="main-footer">
 	
-	<strong>Copyright &copy; 2017 <a href="https://www.tutorialesatualcance.com" target="_blank">Tutoriales a tu Alcance</a>.</strong>
+	<strong><a >SENA | ANÁLISIS Y DISEÑO DE SISTEMAS DE INFORMACIÓN | JUAN CARMARGO - SOFIA PEREZ - JORGE CUESTA | 2020</a></strong>
 
-	Todos los derechos reservados.
-
-
+	
 </footer>
