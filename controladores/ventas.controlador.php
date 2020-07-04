@@ -579,7 +579,7 @@ class ControladorVentas{
 
 
 	/*=============================================
-	SUMA TOTAL VENTAS 
+	SUMA TOTAL VENTAS
 	=============================================*/
 
 	public function ctrSumaTotalVentas(){

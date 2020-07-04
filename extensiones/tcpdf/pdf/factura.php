@@ -70,11 +70,13 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					NIT: 71.759.963-9
+					NIT: 43841262-8
 
 					<br>
-					Dirección: Calle 44B 92-11
-
+					Cra 87 # 45C-26 La Floresta
+					<br>
+					Medellín - Colombia
+					
 				</div>
 
 			</td>
@@ -84,16 +86,19 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					Teléfono: 300 786 52 49
+					Teléfono: 3196125428
 					
 					<br>
-					ventas@inventorysystem.com
+					ventas@urbandolls.com
+
+					<br>
+					www.urbandolls.com
 
 				</div>
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTÙRA N.<br>$valorVenta</td>
+			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$valorVenta</td>
 
 		</tr>
 
@@ -154,6 +159,7 @@ EOF;
 $pdf->writeHTML($bloque2, false, false, false, false, '');
 
 // ---------------------------------------------------------
+
 $bloque3 = <<<EOF
 
 	<table style="font-size:10px; padding:5px 10px;">
@@ -184,7 +190,6 @@ $orden = null;
 $respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 
 $valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
-
 
 $precioTotal = number_format($item["total"], 2);
 
@@ -290,10 +295,9 @@ $pdf->writeHTML($bloque5, false, false, false, false, '');
 
 
 // ---------------------------------------------------------
-
 //SALIDA DEL ARCHIVO 
 
-$pdf->Output('factura.pdf');
+$pdf->Output('factura.pdf', 'D');
 
 }
 

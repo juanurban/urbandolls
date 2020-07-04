@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 session_start();
 
@@ -35,7 +35,7 @@ session_start();
   <link rel="stylesheet" href="vistas/dist/css/AdminLTE.css">
   
   <!-- AdminLTE Skins -->
-  <link rel="stylesheet" href="vistas/dist/css/skins/skin-blue.css">
+  <link rel="stylesheet" href="vistas/dist/css/skins/_all-skins.min.css">
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -47,7 +47,7 @@ session_start();
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="vistas/plugins/iCheck/all.css">
 
-     <!-- Daterange picker -->
+   <!-- Daterange picker -->
   <link rel="stylesheet" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 
   <!-- Morris chart -->
@@ -77,18 +77,18 @@ session_start();
 
   <!-- SweetAlert 2 -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
-  <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
+   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-  
-   <!-- iCheck 1.0.1 -->
-   <script src="vistas/plugins/iCheck/icheck.min.js"></script>
 
-   <!-- InputMask -->
-   <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
-   <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-   <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+  <!-- iCheck 1.0.1 -->
+  <script src="vistas/plugins/iCheck/icheck.min.js"></script>
 
-   <!-- jQuery Number -->
+  <!-- InputMask -->
+  <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+  <!-- jQuery Number -->
   <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
 
   <!-- daterangepicker http://www.daterangepicker.com/-->
@@ -100,9 +100,10 @@ session_start();
   <script src="vistas/bower_components/morris.js/morris.min.js"></script>
 
   <!-- ChartJS http://www.chartjs.org/-->
-  <script src="vistas/bower_components/chart.js/Chart.js"></script>
-  
-  
+  <script src="vistas/bower_components/Chart.js/Chart.js"></script>
+
+
+
 </head>
 
 <!--=====================================
@@ -144,7 +145,6 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "crear-venta" ||
          $_GET["ruta"] == "editar-venta" ||
          $_GET["ruta"] == "reportes" ||
-         $_GET["ruta"] == "almacenes" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
@@ -181,10 +181,9 @@ CUERPO DOCUMENTO
 <script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/categorias.js"></script>
-<script src="vistas/js/clientes.js"></script>
 <script src="vistas/js/productos.js"></script>
+<script src="vistas/js/clientes.js"></script>
 <script src="vistas/js/ventas.js"></script>
-<script src="vistas/js/almacenes.js"></script>
 <script src="vistas/js/reportes.js"></script>
 
 </body>
