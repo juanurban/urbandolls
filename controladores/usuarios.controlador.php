@@ -16,6 +16,7 @@ class ControladorUsuarios{
 			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				$tabla = "usuarios";
+				$tabla_logs = "logs";
 
 				$item = "usuario";
 				$valor = $_POST["ingUsuario"];
@@ -53,7 +54,10 @@ class ControladorUsuarios{
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
 						if($ultimoLogin == "ok"){
-
+							ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+								"etiqueta" => "Usuarios Controlador",
+								"descripcion" => "Login exitoso. ID: {$respuesta["id"]}, NOMBRE: {$respuesta["nombre"]}, USUARIO: {$respuesta["usuario"]}, FECHA INGRESO: {$fechaActual}",
+							));
 							echo '<script>
 
 								window.location = "inicio";
@@ -63,14 +67,20 @@ class ControladorUsuarios{
 						}				
 						
 					}else{
-
+						ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+							"etiqueta" => "Usuarios Controlador",
+							"descripcion" => "El usuario aún no está activado. ID: {$respuesta["id"]}, NOMBRE: {$respuesta["nombre"]}, USUARIO: {$respuesta["usuario"]}",
+						));
 						echo '<br>
 							<div class="alert alert-danger">El usuario aún no está activado</div>';
 
 					}		
 
 				}else{
-
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Usuarios Controlador",
+						"descripcion" => "Error al ingresar, vuelve a intentarlo. USUARIO: {$valor}",
+					));
 					echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
 
 				}
@@ -239,7 +249,12 @@ class ControladorUsuarios{
 	static public function ctrMostrarUsuarios($item, $valor){
 
 		$tabla = "usuarios";
+		$tabla_logs = "logs";
 
+		ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+			"etiqueta" => "Usuarios Controlador",
+			"descripcion" => "Listar usuarios.",
+		));
 		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
 
 		return $respuesta;
