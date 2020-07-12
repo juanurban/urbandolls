@@ -21,6 +21,8 @@ class ControladorProductos{
 	=============================================*/
 
 	static public function ctrCrearProducto(){
+		$tabla = "productos";
+				$tabla_logs = "logs";
 
 		if(isset($_POST["nuevaDescripcion"])){
 
@@ -96,8 +98,8 @@ class ControladorProductos{
 
 				}
 
-				$tabla = "productos";
-
+				
+				
 				$datos = array("id_categoria" => $_POST["nuevaCategoria"],
 							   "codigo" => $_POST["nuevoCodigo"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
@@ -105,10 +107,15 @@ class ControladorProductos{
 							   "precio_compra" => $_POST["nuevoPrecioCompra"],
 							   "precio_venta" => $_POST["nuevoPrecioVenta"],
 							   "imagen" => $ruta);
+							  
 
 				$respuesta = ModeloProductos::mdlIngresarProducto($tabla, $datos);
 
 				if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Productos Controlador",
+						"descripcion" => "Producto creado. ID: {$datos["id_categoria"]}, CODIGO: {$datos["codigo"]}, DESCRIPCION: {$datos["descripcion"]}",
+					));
 
 					echo'<script>
 
@@ -131,12 +138,16 @@ class ControladorProductos{
 
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Productos Controlador",
+					"descripcion" => "¡El producto no puede ir con los campos vacíos o llevar caracteres especiales!",
+				));
 
 				echo'<script>
 
 					swal({
 						  type: "error",
-						  title: "¡El producto no puede ir con los campos vacíos o llevar caracteres especiales!",
+						  title: "Se intento agregar un  producto con los campos vacíos o con caracteres especiales",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -246,6 +257,7 @@ class ControladorProductos{
 				}
 
 				$tabla = "productos";
+				$tabla_logs = "logs";
 
 				$datos = array("id_categoria" => $_POST["editarCategoria"],
 							   "codigo" => $_POST["editarCodigo"],
@@ -258,6 +270,10 @@ class ControladorProductos{
 				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
 
 				if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Productos Controlador",
+						"descripcion" => "Producto Editado . ID: {$datos["id_categoria"]}, CODIGO: {$datos["codigo"]}, DESCRIPCION: {$datos["descripcion"]}",
+					));
 
 					echo'<script>
 
@@ -280,6 +296,10 @@ class ControladorProductos{
 
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Productos Controlador",
+					"descripcion" => "¡El producto no puede ir con los campos vacíos o llevar caracteres especiales!",
+				));
 
 				echo'<script>
 
@@ -306,11 +326,13 @@ class ControladorProductos{
 	BORRAR PRODUCTO
 	=============================================*/
 	static public function ctrEliminarProducto(){
+		
 
 		if(isset($_GET["idProducto"])){
 
 			$tabla ="productos";
 			$datos = $_GET["idProducto"];
+			$tabla_logs = "logs";
 
 			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/productos/default/anonymous.png"){
 
@@ -322,6 +344,10 @@ class ControladorProductos{
 			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
 
 			if($respuesta == "ok"){
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Productos Controlador",
+					"descripcion" => "Producto Eliminado . ID: {$datos["idProducto"]}, CODIGO: {$datos["codigo"]}, DESCRIPCION: {$datos["descripcion"]}",
+				));
 
 				echo'<script>
 
