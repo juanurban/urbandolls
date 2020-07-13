@@ -346,7 +346,7 @@ class ControladorProductos{
 			if($respuesta == "ok"){
 				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
 					"etiqueta" => "Productos Controlador",
-					"descripcion" => "Producto Eliminado . ID: {$datos["idProducto"]}, CODIGO: {$datos["codigo"]}, DESCRIPCION: {$datos["descripcion"]}",
+					"descripcion" => "Producto Eliminado . ID: {$_GET["idProducto"]}",
 				));
 
 				echo'<script>
