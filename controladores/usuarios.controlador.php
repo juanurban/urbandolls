@@ -183,7 +183,7 @@ class ControladorUsuarios{
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
 				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
 					"etiqueta" => "Usuarios Controlador",
-					"descripcion" => "{$datos["nombre"]}, {$datos["usuario"]}, {$datos["password"]}, {$datos["perfil"]}, {$datos["foto"]}"
+					"descripcion" => "El usuario ha sido guardado exitosamente. NOMBRE: {$datos["nombre"]}, USUARIO: {$datos["usuario"]}, PERFIL: {$datos["perfil"]}",
 				));
 				
 				if($respuesta == "ok"){
@@ -215,6 +215,10 @@ class ControladorUsuarios{
 
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Usuarios Controlador",
+					"descripcion" => "Error al guardar usuario nuevo. NOMBRE: {$_POST["nuevoNombre"]}, USUARIO: {$_POST["nuevoUsuario"]}",
+				));
 
 				echo '<script>
 
@@ -484,7 +488,7 @@ class ControladorUsuarios{
 			if($respuesta == "ok"){
 				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
 					"etiqueta" => "Usuarios Controlador",
-					"descripcion" => "El usuario ha sido eliminado correctamente. USUARIO: {$datos}",
+					"descripcion" => "El usuario con id {$datos} ha sido eliminado.",
 				));
 
 				echo'<script>

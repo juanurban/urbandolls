@@ -9,6 +9,7 @@ class ControladorVentas{
 	static public function ctrMostrarVentas($item, $valor){
 
 		$tabla = "ventas";
+		$tabla_logs = "logs";
 
 		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
 
@@ -106,6 +107,7 @@ class ControladorVentas{
 			=============================================*/	
 
 			$tabla = "ventas";
+			$tabla_logs = "logs";
 
 			$datos = array("id_vendedor"=>$_POST["idVendedor"],
 						   "id_cliente"=>$_POST["seleccionarCliente"],
@@ -119,6 +121,11 @@ class ControladorVentas{
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 
 			if($respuesta == "ok"){
+
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Ventas Controlador",
+					"descripcion" => "La venta ha sido guardada correctamente. CODIGO FACTURA: {$datos["codigo"]}, VENDEDOR: {$datos["id_vendedor"]}, CLIENTE: {$datos["id_cliente"]}.",
+				));
 
 				echo'<script>
 
@@ -157,6 +164,7 @@ class ControladorVentas{
 			FORMATEAR TABLA DE PRODUCTOS Y LA DE CLIENTES
 			=============================================*/
 			$tabla = "ventas";
+			$tabla_logs = "logs";
 
 			$item = "codigo";
 			$valor = $_POST["editarVenta"];
@@ -295,6 +303,11 @@ class ControladorVentas{
 
 			if($respuesta == "ok"){
 
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Ventas Controlador",
+					"descripcion" => "Venta editada correctamente. CODIGO FACTURA: {$datos["codigo"]}, VENDEDOR: {$datos["id_vendedor"]}, CLIENTE: {$datos["id_cliente"]}",
+				));
+
 				echo'<script>
 
 				localStorage.removeItem("rango");
@@ -330,6 +343,7 @@ class ControladorVentas{
 		if(isset($_GET["idVenta"])){
 
 			$tabla = "ventas";
+			$tabla_logs = "logs";
 
 			$item = "id";
 			$valor = $_GET["idVenta"];
@@ -442,6 +456,11 @@ class ControladorVentas{
 
 			if($respuesta == "ok"){
 
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Ventas Controlador",
+					"descripcion" => "La venta con id {$_GET["idVenta"]} ha sido eliminada.",
+				));
+
 				echo'<script>
 
 				swal({
@@ -471,6 +490,12 @@ class ControladorVentas{
 	static public function ctrRangoFechasVentas($fechaInicial, $fechaFinal){
 
 		$tabla = "ventas";
+		$tabla_logs = "logs";
+
+		ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+			"etiqueta" => "Ventas Controlador",
+			"descripcion" => "Listar admistrador de ventas.",
+		));
 
 		$respuesta = ModeloVentas::mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal);
 
@@ -487,6 +512,12 @@ class ControladorVentas{
 		if(isset($_GET["reporte"])){
 
 			$tabla = "ventas";
+			$tabla_logs = "logs";
+
+			ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+				"etiqueta" => "Ventas Controlador",
+				"descripcion" => "Se ha descargado el reporte en formato excel.",
+			));
 
 			if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
 
