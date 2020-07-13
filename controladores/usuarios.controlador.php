@@ -96,7 +96,7 @@ class ControladorUsuarios{
 	=============================================*/
 
 	static public function ctrCrearUsuario(){
-
+		$tabla_logs = 'logs';
 		if(isset($_POST["nuevoUsuario"])){
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
@@ -181,7 +181,11 @@ class ControladorUsuarios{
 					           "foto"=>$ruta);
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
-			
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Usuarios Controlador",
+					"descripcion" => "{$datos["nombre"]}, {$datos["usuario"]}, {$datos["password"]}, {$datos["perfil"]}, {$datos["foto"]}"
+				));
+				
 				if($respuesta == "ok"){
 
 					echo '<script>
@@ -268,6 +272,8 @@ class ControladorUsuarios{
 
 		if(isset($_POST["editarUsuario"])){
 
+			$tabla_logs = "logs";
+
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])){
 
 				/*=============================================
@@ -350,6 +356,7 @@ class ControladorUsuarios{
 				}
 
 				$tabla = "usuarios";
+				$tabla_logs = "logs";
 
 				if($_POST["editarPassword"] != ""){
 
@@ -358,6 +365,10 @@ class ControladorUsuarios{
 						$encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 					}else{
+						ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+							"etiqueta" => "Usuarios Controlador",
+							"descripcion" => "Error al editar la contraseña (contraseña vacía o llevar caracteres especiales)",
+						));
 
 						echo'<script>
 
@@ -395,6 +406,10 @@ class ControladorUsuarios{
 				$respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
 
 				if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Usuarios Controlador",
+						"descripcion" => "El usuario ha sido editado correctamente. USUARIO: {$datos["nombre"]}",
+					));
 
 					echo'<script>
 
@@ -417,6 +432,10 @@ class ControladorUsuarios{
 
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Usuarios Controlador",
+					"descripcion" => "Error al editar usuario. USUARIO: {$_POST["editarNombre"]}",
+				));
 
 				echo'<script>
 
@@ -450,6 +469,7 @@ class ControladorUsuarios{
 		if(isset($_GET["idUsuario"])){
 
 			$tabla ="usuarios";
+			$tabla_logs = "logs";
 			$datos = $_GET["idUsuario"];
 
 			if($_GET["fotoUsuario"] != ""){
@@ -462,6 +482,10 @@ class ControladorUsuarios{
 			$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
 
 			if($respuesta == "ok"){
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Usuarios Controlador",
+					"descripcion" => "El usuario ha sido eliminado correctamente. USUARIO: {$datos}",
+				));
 
 				echo'<script>
 
