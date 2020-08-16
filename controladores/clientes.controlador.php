@@ -7,6 +7,7 @@ class ControladorClientes{
 	=============================================*/
 
 	static public function ctrCrearCliente(){
+		$tabla_logs = "logs";
 
 		if(isset($_POST["nuevoCliente"])){
 
@@ -17,7 +18,7 @@ class ControladorClientes{
 			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
 
 				$tabla = "clientes";
-				$tabla_logs = "logs";
+				
 
 			   	$datos = array("nombre"=>$_POST["nuevoCliente"],
 					           "documento"=>$_POST["nuevoDocumentoId"],
@@ -27,12 +28,13 @@ class ControladorClientes{
 					           "fecha_nacimiento"=>$_POST["nuevaFechaNacimiento"]);
 
 				   $respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
-				   ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
-					"etiqueta" => "Clientes Controlador",
-					"descripcion" => "El cliente ha sido guardado correctamente. USUARIO: {$datos["documento"]}, NOMBRE: {$datos["nombre"]}",
-				));
+
 
 			   	if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Clientes Controlador",
+						"descripcion" => "El cliente ha sido guardado correctamente. DOCUMENTO: {$datos["documento"]}, NOMBRE: {$datos["nombre"]}",
+					));
 
 					echo'<script>
 
@@ -54,6 +56,10 @@ class ControladorClientes{
 				}
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Clientes Controlador",
+					"descripcion" => "Error al guardar cliente nuevo. DOCUMENTO: {$_POST["nuevoDocumentoId"]}, NOMBRE: {$_POST["nuevoCliente"]}",
+				));
 
 				echo'<script>
 
