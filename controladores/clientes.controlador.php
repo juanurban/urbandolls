@@ -93,8 +93,13 @@ class ControladorClientes{
 	static public function ctrMostrarClientes($item, $valor){
 
 		$tabla = "clientes";
+		$tabla_logs = "logs";
 
 		$respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
+		ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+			"etiqueta" => "Clientes Controlador",
+			"descripcion" => "Listar clientes.",
+		));
 
 		return $respuesta;
 
