@@ -95,11 +95,13 @@ class ControladorClientes{
 		$tabla = "clientes";
 		$tabla_logs = "logs";
 
+		// ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+		// 	"etiqueta" => "Clientes Controlador",
+		// 	"descripcion" => "Listar clientes.",
+		// ));
+
 		$respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
-		ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
-			"etiqueta" => "Clientes Controlador",
-			"descripcion" => "Listar clientes.",
-		));
+
 
 		return $respuesta;
 
@@ -111,7 +113,10 @@ class ControladorClientes{
 
 	static public function ctrEditarCliente(){
 
+		$tabla_logs = "logs";
+
 		if(isset($_POST["editarCliente"])){
+
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCliente"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["editarDocumentoId"]) &&
@@ -132,6 +137,10 @@ class ControladorClientes{
 			   	$respuesta = ModeloClientes::mdlEditarCliente($tabla, $datos);
 
 			   	if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Clientes Controlador",
+						"descripcion" => "El cliente ha sido editado correctamente. DOCUMENTO: {$datos["documento"]}, NOMBRE: {$datos["nombre"]}",
+					));
 
 					echo'<script>
 
@@ -153,6 +162,10 @@ class ControladorClientes{
 				}
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Clientes Controlador",
+					"descripcion" => "Error al editar cliente. DOCUMENTO: {$_POST["editarDocumentoId"]}, NOMBRE: {$_POST["editarCliente"]}",
+				));
 
 				echo'<script>
 
@@ -188,11 +201,16 @@ class ControladorClientes{
 		if(isset($_GET["idCliente"])){
 
 			$tabla ="clientes";
+			$tabla_logs = "logs";
 			$datos = $_GET["idCliente"];
 
 			$respuesta = ModeloClientes::mdlEliminarCliente($tabla, $datos);
 
 			if($respuesta == "ok"){
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Clientes Controlador",
+					"descripcion" => "El cliente con id {$datos} ha sido eliminado.",
+				));
 
 				echo'<script>
 
