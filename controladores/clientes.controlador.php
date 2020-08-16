@@ -16,7 +16,8 @@ class ControladorClientes{
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) && 
 			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
 
-			   	$tabla = "clientes";
+				$tabla = "clientes";
+				$tabla_logs = "logs";
 
 			   	$datos = array("nombre"=>$_POST["nuevoCliente"],
 					           "documento"=>$_POST["nuevoDocumentoId"],
@@ -25,7 +26,11 @@ class ControladorClientes{
 					           "direccion"=>$_POST["nuevaDireccion"],
 					           "fecha_nacimiento"=>$_POST["nuevaFechaNacimiento"]);
 
-			   	$respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
+				   $respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
+				   ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Clientes Controlador",
+					"descripcion" => "El cliente ha sido guardado correctamente. USUARIO: {$datos["documento"]}, NOMBRE: {$datos["nombre"]}",
+				));
 
 			   	if($respuesta == "ok"){
 
