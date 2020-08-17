@@ -15,7 +15,7 @@ class ControladorClientes{
 			   preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoId"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["nuevoEmail"]) && 
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
+			   preg_match('/^[#\.\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaDireccion"])){
 
 				$tabla = "clientes";
 				
@@ -58,7 +58,7 @@ class ControladorClientes{
 			}else{
 				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
 					"etiqueta" => "Clientes Controlador",
-					"descripcion" => "Error al guardar cliente nuevo. DOCUMENTO: {$_POST["nuevoDocumentoId"]}, NOMBRE: {$_POST["nuevoCliente"]}",
+					"descripcion" => "Error al guardar cliente. DOCUMENTO: {$_POST["nuevoDocumentoId"]}, NOMBRE: {$_POST["nuevoCliente"]}",
 				));
 
 				echo'<script>
@@ -95,10 +95,10 @@ class ControladorClientes{
 		$tabla = "clientes";
 		$tabla_logs = "logs";
 
-		// ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
-		// 	"etiqueta" => "Clientes Controlador",
-		// 	"descripcion" => "Listar clientes.",
-		// ));
+		ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+			"etiqueta" => "Clientes Controlador",
+			"descripcion" => "Listar clientes",
+		));
 
 		$respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
 
@@ -122,7 +122,7 @@ class ControladorClientes{
 			   preg_match('/^[0-9]+$/', $_POST["editarDocumentoId"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editarEmail"]) && 
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["editarTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarDireccion"])){
+			   preg_match('/^[#\.\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarDireccion"])){
 
 			   	$tabla = "clientes";
 
