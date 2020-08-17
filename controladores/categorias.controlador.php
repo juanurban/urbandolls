@@ -7,18 +7,24 @@ class ControladorCategorias{
 	=============================================*/
 
 	static public function ctrCrearCategoria(){
-
+		
 		if(isset($_POST["nuevaCategoria"])){
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCategoria"])){
 
 				$tabla = "categorias";
+				$tabla_logs = "logs";
 
 				$datos = $_POST["nuevaCategoria"];
 
 				$respuesta = ModeloCategorias::mdlIngresarCategoria($tabla, $datos);
 
 				if($respuesta == "ok"){
+
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Categorias Controlador",
+						"descripcion" => "Categoria creada exitosamente. CATEGORIA: {$_POST["nuevaCategoria"]}",
+					));
 
 					echo'<script>
 
@@ -41,6 +47,11 @@ class ControladorCategorias{
 
 
 			}else{
+				
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Categorias Controlador",
+					"descripcion" => "Categoria no creada. CATEGORIA: {$_POST["nuevaCategoria"]}",
+				));
 
 				echo'<script>
 
@@ -90,6 +101,7 @@ class ControladorCategorias{
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"])){
 
 				$tabla = "categorias";
+				$tabla_logs = "logs";
 
 				$datos = array("categoria"=>$_POST["editarCategoria"],
 							   "id"=>$_POST["idCategoria"]);
@@ -97,6 +109,10 @@ class ControladorCategorias{
 				$respuesta = ModeloCategorias::mdlEditarCategoria($tabla, $datos);
 
 				if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Categorias Controlador",
+						"descripcion" => "Categoria editada exitosamente. ID: {$_POST["idCategoria"]},  CATEGORIA: {$_POST["nuevaCategoria"]}",
+					));
 
 					echo'<script>
 
@@ -119,6 +135,10 @@ class ControladorCategorias{
 
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Categorias Controlador",
+					"descripcion" => "Categoria no editada. ID: {$_POST["idCategoria"]}, CATEGORIA: {$_POST["nuevaCategoria"]}",
+				));
 
 				echo'<script>
 
@@ -153,10 +173,15 @@ class ControladorCategorias{
 
 			$tabla ="Categorias";
 			$datos = $_GET["idCategoria"];
+			$tabla_logs = "logs";
 
 			$respuesta = ModeloCategorias::mdlBorrarCategoria($tabla, $datos);
 
 			if($respuesta == "ok"){
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Categorias Controlador",
+					"descripcion" => "Categoria borrada exitosamente. ID: {$_POST["idCategoria"]}, CATEGORIA: {$_POST["nuevaCategoria"]}",
+				));
 
 				echo'<script>
 
