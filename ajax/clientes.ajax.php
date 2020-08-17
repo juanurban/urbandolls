@@ -2,6 +2,7 @@
 
 require_once "../controladores/clientes.controlador.php";
 require_once "../modelos/clientes.modelo.php";
+require_once "../modelos/log.modelo.php";
 
 class AjaxClientes{
 

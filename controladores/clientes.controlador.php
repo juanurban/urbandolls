@@ -7,6 +7,7 @@ class ControladorClientes{
 	=============================================*/
 
 	static public function ctrCrearCliente(){
+		$tabla_logs = "logs";
 
 		if(isset($_POST["nuevoCliente"])){
 
@@ -14,9 +15,10 @@ class ControladorClientes{
 			   preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoId"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["nuevoEmail"]) && 
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
+			   preg_match('/^[#\.\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaDireccion"])){
 
-			   	$tabla = "clientes";
+				$tabla = "clientes";
+				
 
 			   	$datos = array("nombre"=>$_POST["nuevoCliente"],
 					           "documento"=>$_POST["nuevoDocumentoId"],
@@ -25,9 +27,14 @@ class ControladorClientes{
 					           "direccion"=>$_POST["nuevaDireccion"],
 					           "fecha_nacimiento"=>$_POST["nuevaFechaNacimiento"]);
 
-			   	$respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
+				   $respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
+
 
 			   	if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Clientes Controlador",
+						"descripcion" => "El cliente ha sido guardado correctamente. DOCUMENTO: {$datos["documento"]}, NOMBRE: {$datos["nombre"]}",
+					));
 
 					echo'<script>
 
@@ -49,6 +56,10 @@ class ControladorClientes{
 				}
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Clientes Controlador",
+					"descripcion" => "Error al guardar cliente. DOCUMENTO: {$_POST["nuevoDocumentoId"]}, NOMBRE: {$_POST["nuevoCliente"]}",
+				));
 
 				echo'<script>
 
@@ -82,8 +93,15 @@ class ControladorClientes{
 	static public function ctrMostrarClientes($item, $valor){
 
 		$tabla = "clientes";
+		$tabla_logs = "logs";
+
+		ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+			"etiqueta" => "Clientes Controlador",
+			"descripcion" => "Listar clientes",
+		));
 
 		$respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
+
 
 		return $respuesta;
 
@@ -95,13 +113,16 @@ class ControladorClientes{
 
 	static public function ctrEditarCliente(){
 
+		$tabla_logs = "logs";
+
 		if(isset($_POST["editarCliente"])){
+
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCliente"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["editarDocumentoId"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editarEmail"]) && 
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["editarTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarDireccion"])){
+			   preg_match('/^[#\.\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarDireccion"])){
 
 			   	$tabla = "clientes";
 
@@ -116,6 +137,10 @@ class ControladorClientes{
 			   	$respuesta = ModeloClientes::mdlEditarCliente($tabla, $datos);
 
 			   	if($respuesta == "ok"){
+					ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+						"etiqueta" => "Clientes Controlador",
+						"descripcion" => "El cliente ha sido editado correctamente. DOCUMENTO: {$datos["documento"]}, NOMBRE: {$datos["nombre"]}",
+					));
 
 					echo'<script>
 
@@ -137,6 +162,10 @@ class ControladorClientes{
 				}
 
 			}else{
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Clientes Controlador",
+					"descripcion" => "Error al editar cliente. DOCUMENTO: {$_POST["editarDocumentoId"]}, NOMBRE: {$_POST["editarCliente"]}",
+				));
 
 				echo'<script>
 
@@ -172,11 +201,16 @@ class ControladorClientes{
 		if(isset($_GET["idCliente"])){
 
 			$tabla ="clientes";
+			$tabla_logs = "logs";
 			$datos = $_GET["idCliente"];
 
 			$respuesta = ModeloClientes::mdlEliminarCliente($tabla, $datos);
 
 			if($respuesta == "ok"){
+				ModeloLogs::mdlRegistrarLogs($tabla_logs, array(
+					"etiqueta" => "Clientes Controlador",
+					"descripcion" => "El cliente con id {$datos} ha sido eliminado.",
+				));
 
 				echo'<script>
 
