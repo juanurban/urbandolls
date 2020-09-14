@@ -261,7 +261,7 @@ MODAL AGREGAR USUARIO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar usuario</button>
+          <button type="submit" class="btn btn-primary" id="GuardarUsuarioBoton">Guardar usuario</button>
 
         </div>
 
@@ -408,7 +408,7 @@ MODAL EDITAR USUARIO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Modificar usuario</button>
+          <button type="submit" class="btn btn-primary" id="EditarUsuarioBoton">Modificar usuario</button>
 
         </div>
 

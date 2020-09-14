@@ -1,4 +1,4 @@
-const login = require('../../plugins/login')
+const login = require('../plugins/login')
 
 describe('Dashboard', () => {
     it('Elementos del panel de control', () => {
