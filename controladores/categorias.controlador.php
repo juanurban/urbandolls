@@ -170,7 +170,7 @@ class ControladorCategorias{
 
 		if(isset($_GET["idCategoria"])){
 
-			$tabla ="Categorias";
+			$tabla ="categorias";
 			$datos = $_GET["idCategoria"];
 			$tabla_logs = "logs";
 
