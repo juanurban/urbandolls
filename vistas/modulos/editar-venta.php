@@ -302,7 +302,7 @@
 
           <div class="box-footer">
 
-            <button type="submit" class="btn btn-primary pull-right">Guardar cambios</button>
+            <button type="submit" class="btn btn-primary pull-right" id="EditarVentaBoton" >Guardar cambios</button>
 
           </div>
 

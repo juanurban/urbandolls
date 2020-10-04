@@ -276,7 +276,7 @@ if($_SESSION["perfil"] == "Especial"){
 
           <div class="box-footer">
 
-            <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+            <button type="submit" class="btn btn-primary pull-right" id="GuardarVentaBoton">Guardar venta</button>
 
           </div>
 

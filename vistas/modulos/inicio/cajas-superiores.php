@@ -37,7 +37,7 @@ $totalProductos = count($productos);
     
     </div>
     
-    <a href="ventas" class="small-box-footer">
+    <a href="ventas" class="small-box-footer" id="CajaVentas">
       
       Más info <i class="fa fa-arrow-circle-right"></i>
     
@@ -65,7 +65,7 @@ $totalProductos = count($productos);
     
     </div>
     
-    <a href="categorias" class="small-box-footer">
+    <a href="categorias" class="small-box-footer" id="CajaCategorias">
       
       Más info <i class="fa fa-arrow-circle-right"></i>
     
@@ -93,7 +93,7 @@ $totalProductos = count($productos);
     
     </div>
     
-    <a href="clientes" class="small-box-footer">
+    <a href="clientes" class="small-box-footer" id="CajaClientes">
 
       Más info <i class="fa fa-arrow-circle-right"></i>
 
@@ -121,7 +121,7 @@ $totalProductos = count($productos);
     
     </div>
     
-    <a href="productos" class="small-box-footer">
+    <a href="productos" class="small-box-footer" id="CajaProductos">
       
       Más info <i class="fa fa-arrow-circle-right"></i>
     

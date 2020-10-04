@@ -1,3 +1,4 @@
 ._.htaccess
 ._*
 modelos/conexion.php
+node_modules
